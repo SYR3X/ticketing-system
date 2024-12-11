@@ -1,1 +1,1 @@
-{"maxTicketCapacity":1000,"vendors":[{"vendorId":"vendor1","releaseRate":5},{"vendorId":"vendor2","releaseRate":4}],"customers":[{"customerId":"customer1","retrievalRate":2,"maxHoldingCapacity":50},{"customerId":"customer2","retrievalRate":3,"maxHoldingCapacity":60}]}
+{"maxTicketCapacity":200,"vendors":[{"vendorId":"vendor1","releaseRate":5},{"vendorId":"vendor2","releaseRate":3}],"customers":[{"customerId":"customer1","retrievalRate":2,"maxHoldingCapacity":40},{"customerId":"customer2","retrievalRate":4,"maxHoldingCapacity":30}]}

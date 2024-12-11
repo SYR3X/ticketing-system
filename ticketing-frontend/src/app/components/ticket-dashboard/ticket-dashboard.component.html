@@ -1,1 +1,39 @@
-<p>ticket-dashboard works!</p>
+<div class="dashboard-container">
+  <h2>Ticket System Dashboard</h2>
+
+  <div class="capacity-settings">
+    <h3>Ticket Capacity Settings</h3>
+    <div class="form-group">
+      <label for="capacity">Max Ticket Capacity (Current: {{systemStatus.maxCapacity}}):</label>
+      <input id="capacity" type="number" [(ngModel)]="capacity" min="1">
+      <button (click)="updateCapacity()" [disabled]="capacity < 1">
+        Update Capacity
+      </button>
+    </div>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </div>
+
+
+  <div class="status-card">
+    <h3>Available Tickets</h3>
+    <div class="ticket-count">{{ systemStatus.availableTickets }}</div>
+  </div>
+
+  <div class="stats-container">
+    <div class="stats-card">
+      <h3>Vendor Statistics</h3>
+      <p>Total Tickets Released: {{ getTotalTicketsReleased() }}</p>
+      <div *ngFor="let vendor of systemStatus.vendorStats | keyvalue">
+        Vendor {{ vendor.key }}: {{ vendor.value }} tickets released
+      </div>
+    </div>
+
+    <div class="stats-card">
+      <h3>Customer Statistics</h3>
+      <p>Total Tickets Purchased: {{ getTotalTicketsPurchased() }}</p>
+      <div *ngFor="let customer of systemStatus.customerStats | keyvalue">
+        Customer {{ customer.key }}: {{ customer.value }} tickets purchased
+      </div>
+    </div>
+  </div>
+</div>

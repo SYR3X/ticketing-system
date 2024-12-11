@@ -1,1 +1,36 @@
-<p>customer-panel works!</p>
+<div class="customer-panel">
+  <h3>Customer Control Panel</h3>
+
+  <div class="control-form">
+    <div class="form-group">
+      <label for="customerId">Customer ID:</label>
+      <input id="customerId" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID">
+    </div>
+
+    <div class="form-group">
+      <label for="maxPurchase">Max Holding Capacity:</label>
+      <input id="maxPurchase" type="number" [(ngModel)]="maxPurchaseSize" min="1" placeholder="Maximum tickets customer can hold">
+    </div>
+
+    <div class="form-group">
+      <label for="retrievalRate">Ticket Retrieval Rate (per second):</label>
+      <input id="retrievalRate" type="number" [(ngModel)]="retrievalRate" min="1" placeholder="Tickets to retrieve per second">
+    </div>
+
+    <button (click)="startCustomer()" [disabled]="!customerId || maxPurchaseSize < 1 || retrievalRate < 1">
+      Start Customer
+    </button>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div class="stats-display">
+    <h4>Active Customers</h4>
+    <div *ngFor="let stat of customerStats | keyvalue" class="customer-row">
+      <span>{{ stat.key }}: {{ stat.value }} tickets purchased</span>
+      <button class="stop-button" (click)="stopCustomer(stat.key)">Stop</button>
+    </div>
+  </div>
+</div>

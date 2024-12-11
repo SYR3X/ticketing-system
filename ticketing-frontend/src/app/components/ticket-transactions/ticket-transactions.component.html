@@ -1,0 +1,26 @@
+<div class="transactions-panel">
+  <h3>Ticket Transactions</h3>
+  <table class="transactions-table">
+    <thead>
+    <tr>
+      <th>Ticket ID</th>
+      <th>Vendor ID</th>
+      <th>Customer ID</th>
+      <th>Release Time</th>
+      <th>Purchase Time</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions"
+        [ngClass]="{'released': transaction.type === 'RELEASE', 'purchased': transaction.type === 'PURCHASE'}">
+      <td>{{transaction.ticketId}}</td>
+      <td>{{transaction.vendorId}}</td>
+      <td>{{transaction.customerId || 'Not purchased'}}</td>
+      <td>{{transaction.releaseTime | date:'medium'}}</td>
+      <td>{{transaction.purchaseTime | date:'medium'}}</td>
+      <td>{{transaction.type}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

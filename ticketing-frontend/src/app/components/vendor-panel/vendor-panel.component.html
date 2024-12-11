@@ -1,1 +1,31 @@
-<p>vendor-panel works!</p>
+<div class="vendor-panel">
+  <h3>Vendor Control Panel</h3>
+
+  <div class="control-form">
+    <div class="form-group">
+      <label for="vendorId">Vendor ID:</label>
+      <input id="vendorId" type="text" [(ngModel)]="vendorId" placeholder="Enter vendor ID">
+    </div>
+
+    <div class="form-group">
+      <label for="releaseRate">Release Rate:</label>
+      <input id="releaseRate" type="number" [(ngModel)]="releaseRate" min="1">
+    </div>
+
+    <button (click)="startVendor()" [disabled]="!vendorId || releaseRate < 1">
+      Start Vendor
+    </button>
+  </div>
+
+  <div class="stats-display">
+    <h4>Active Vendors</h4>
+    <div *ngFor="let stat of vendorStats | keyvalue" class="vendor-row">
+      <span>{{ stat.key }}: {{ stat.value }} tickets released</span>
+      <button class="stop-button" (click)="stopVendor(stat.key)">Stop</button>
+    </div>
+  </div>
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+</div>
